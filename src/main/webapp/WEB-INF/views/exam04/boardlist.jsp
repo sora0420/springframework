@@ -16,6 +16,7 @@
 	<tr>
 	<th>번호</th>
 	<th>제목</th>
+	<th>내용</th>
 	<th>작성자</th>
 	<th>날짜</th>
 	<th>조회수</th>	
@@ -28,7 +29,7 @@
 			<td>${board.bcontent}</td>
 			<td>${board.bwriter}</td>			
 			<td><fmt:formatDate value="${board.bdate}" pattern="yyyy-MM-dd"/> </td>			
-			<td>>${board.bhitcount}</td>		
+			<td>${board.bhitcount}</td>		
 		
 		</tr>
 		</c:forEach>
@@ -50,7 +51,7 @@
 						href="list?pageNo=${i}">${i}</a>
 					</c:if>
 					<c:if test="${pager.pageNo==i}">
-						<a class="btn btn-outline-success btn-sm" 
+						<a class="btn btn-danger btn-sm" 
 							href="list?pageNo=${i}">${i}</a>
 					</c:if>	
 				</c:forEach>
