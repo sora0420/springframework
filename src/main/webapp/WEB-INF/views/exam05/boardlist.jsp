@@ -11,7 +11,6 @@
 	<tr>
 	<th>번호</th>
 	<th>제목</th>
-	<th>내용</th>
 	<th>작성자</th>
 	<th>날짜</th>
 	<th>조회수</th>	
@@ -21,7 +20,6 @@
 					
 			<td>${board.bno}</td>
 			<td><a href="javascript:read(${board.bno})">${board.btitle}</a></td>
-			<td>${board.bcontent}</td>
 			<td>${board.bwriter}</td>			
 			<td><fmt:formatDate value="${board.bdate}" pattern="yyyy-MM-dd"/> </td>			
 			<td>${board.bhitcount}</td>		
