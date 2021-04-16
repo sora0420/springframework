@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- DB 연결 설정 및 커넥션 풀 설정 -->
+	<!-- bean = object / <bean> >> 객체를하나 만들겠다. / 설정파일에서 빈은 관리객체를 만들겟다 / 여기는 root에서 관리하는객체 만들겟다-->
+	<!-- id="dataSource" >> 밑에 객체를 찾을때 이 이름으로 찾아오겠다 --> 
+	<bean id="dataSource" 
+	class="org.apache.commons.dbcp2.BasicDataSource"
+	destroy-method="close">
+	<!-- destroy-method="close" >>  --> 
+	<property name="driverClassName" value="oracle.jdbc.OracleDriver"/>
+	<property name="url" value="jdbc:oracle:thin:@106.253.56.122:1521:orcl"></property>
+	<property name="username" value="user17"/>
+	<property name="password" value="12345"/>
+	<property name="initialSize" value="2"/>
+	<property name="maxTotal" value="5"/>
+	<property name="maxIdle" value="2"></property>
+	</bean>
+	
+	<!-- MyBatis -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="configLocation" value="/WEB-INF/mybatis/mapper-config.xml"/>
+		<property name="mapperLocations" value="/WEB-INF/mybatis/mapper/*.xml"/>	
+	</bean>
+	
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactory"/>
+	</bean>
+	
+</beans>
